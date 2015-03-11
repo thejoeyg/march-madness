@@ -2,7 +2,9 @@ class BracketsController < ApplicationController
 
   before_action :authenticate_user!
   before_action :authorize_user!, :except => [:index, :new, :create]
-  before_action :lockout_user!, :only => [:create, :new, :edit, :update]
+  before_action :lockout_user!, :only => [:create, :new, :edit, :update, :destroy]
+
+  #Admin id(10) needs to have access to all CRUD, find a way to add this to the code
 
   def index
     @bracket = current_user.bracket
@@ -32,9 +34,13 @@ class BracketsController < ApplicationController
     @column_names.delete("created_at")
     @column_names.delete("updated_at")
     @teams = Team.all
-
     @bracket = current_user.bracket
 
+    if @bracket.save
+      redirect_to brackets_path, notice: "Bracket was successfully updated."
+      else
+    redirect_to edit_bracket_path(current_user.bracket.id)
+    end
   end
 
   def new
@@ -55,7 +61,7 @@ end
     @bracket = Bracket.new(bracket_params)
     @bracket.user = current_user
     if @bracket.save
-      redirect_to @bracket, notice: "Bracket was successfully created."
+      redirect_to brackets_path, notice: "Bracket was successfully created."
     else
       render :new
     end
@@ -81,9 +87,9 @@ end
   end
 
   def lockout_user!
-    lockout_date = Date.parse('2015-03-20')
+    lockout_date = Date.parse('2015-03-19')
     if Date.today > lockout_date
-      redirect_to brackets_path, notice: "Bracket picks are finished for this year. Try playing next year."
+      redirect_to brackets_path, notice: "Bracket picks are completed for this year. Try playing next year."
     end
   end
 
