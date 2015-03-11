@@ -1,12 +1,17 @@
 class BracketsController < ApplicationController
 
-  before_filter :authenticate_user!, :except => [:index, :show]
+  before_action :authenticate_user!
+  before_action :authorize_user!, :except => [:index, :new, :create]
+  before_action :lockout_user!, :only => [:create, :new, :edit, :update]
 
   def index
-    @brackets = Bracket.all
+    @bracket = current_user.bracket
   end
 
   def show
+    @bracket = current_user.bracket
+    actual_bracket = Bracket.find(10)
+    @score = @bracket.score(actual_bracket)
   end
 
   def edit
@@ -18,6 +23,18 @@ class BracketsController < ApplicationController
     @teams = Team.all
 
     @bracket = current_user.bracket
+  end
+
+  def update
+    no = ["id", "created_at", "updated_at"]
+    @column_names = Bracket.columns.map{|c| c.name}
+    @column_names.delete("id")
+    @column_names.delete("created_at")
+    @column_names.delete("updated_at")
+    @teams = Team.all
+
+    @bracket = current_user.bracket
+
   end
 
   def new
@@ -56,5 +73,18 @@ end
     params.require(:bracket).permit!
   end
 
+  def authorize_user!
+    @bracket = Bracket.find(params[:id])
+    if @bracket.user != current_user
+      redirect_to brackets_path, error: "You are not authorized to view someone else's bracket."
+    end
+  end
+
+  def lockout_user!
+    lockout_date = Date.parse('2015-03-20')
+    if Date.today > lockout_date
+      redirect_to brackets_path, notice: "Bracket picks are finished for this year. Try playing next year."
+    end
+  end
 
 end
