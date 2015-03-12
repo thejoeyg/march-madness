@@ -4,7 +4,7 @@ class BracketsController < ApplicationController
   before_action :authorize_user!, :except => [:index, :new, :create]
   before_action :lockout_user!, :only => [:create, :new, :edit, :update, :destroy]
 
-  #Admin id(10) needs to have access to all CRUD, find a way to add this to the code
+  #Admin id(10) needs to have access to all CRUD, make an exception
 
   def index
     @bracket = current_user.bracket
@@ -87,7 +87,7 @@ end
   end
 
   def lockout_user!
-    lockout_date = Date.parse('2015-03-19')
+    lockout_date = Date.parse('2015-03-18')
     if Date.today > lockout_date
       redirect_to brackets_path, notice: "Bracket picks are completed for this year. Try playing next year."
     end
