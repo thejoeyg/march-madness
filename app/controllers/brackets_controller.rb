@@ -12,8 +12,10 @@ class BracketsController < ApplicationController
 
   def show
     @bracket = current_user.bracket
+    @organization = current_user.bracket.organization
     actual_bracket = Bracket.find(10)
     @score = @bracket.score(actual_bracket)
+    @average_team_score = @organization.average_team_score
   end
 
   def edit
@@ -44,7 +46,7 @@ class BracketsController < ApplicationController
   end
 
   def new
-    if current_user.bracket == nil
+    # if current_user.bracket == nil
     no = ["id", "created_at", "updated_at"]
     @column_names = Bracket.columns.map{|c| c.name}
     @column_names.delete("id")
@@ -52,9 +54,9 @@ class BracketsController < ApplicationController
     @column_names.delete("updated_at")
     @teams = Team.all
     @bracket = Bracket.new
-  else
-    redirect_to edit_bracket_path(current_user.bracket.id)
-  end
+  # else
+  #   redirect_to edit_bracket_path(current_user.bracket.id)
+  # end
 end
 
   def create
@@ -92,5 +94,7 @@ end
       redirect_to brackets_path, notice: "Bracket picks are completed for this year. Try playing next year."
     end
   end
+
+  #make sure not to lock out admin with user id 10
 
 end

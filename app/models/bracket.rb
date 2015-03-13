@@ -1,5 +1,7 @@
 class Bracket < ActiveRecord::Base
   belongs_to :user
+  belongs_to :organization
+
 
   NODES = ["M1A", "M1B", "M1C","M1D", "M1E", "M1F", "M1G", "M1H", "M2A", "M2B", "M2C", "M2D", "M3A", "M3B", "M4A",
     "S1A", "S1B", "S1C", "S1D", "S1E", "S1G", "S1H", "S2A", "S2B", "S2C", "S2D", "S3A", "S3B", "S4A", "W1A", "W1B",

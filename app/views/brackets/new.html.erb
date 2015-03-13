@@ -1,12 +1,70 @@
-<h1>Make Your Bracket</h1>
 
-<%= form_for @bracket do |f|%>
-  <%@column_names.each do |column|%>
-  <% if !column.include? "0" %>
-  <%= f.label column %>
-    <%= f.text_field column %>
+<p>
+  <div id="M0A">Wisconsin</div>
+  <div id="M0B">Utah</div>
+</p>
+
+
+<p>
+  <div id="M0C">Iowa</div>
+  <div id="M0D">Georgetown</div>
+</p>
+
+
+<p>
+  <div id="M1A">...</div>
+  <div id="M1B">...</div>
+</p>
+
+<button id="save">SAVE</button>
+
+
+<script charset="utf-8">
+  $('#M0A').click(function(){
+    $('#M1A').text($('#M0A').text())
+  })
+
+  $('#M0B').click(function(){
+    $('#M1A').text($('#M0B').text())
+  })
+
+  $('#M0C').click(function(){
+    $('#M1B').text($('#M0C').text())
+  })
+
+  $('#M0D').click(function(){
+    $('#M1B').text($('#M0D').text())
+  })
+
+  $('#M0E').click(function(){
+    $('#M1C').text($('#M0E').text())
+  })
+
+  $('#save').click(function(){
+
+    var id = $('#bracket_organization_id').val()
+    var params = {
+      bracket: {
+        M1A: $("#M1A").text(),
+        M1B: $("#M1B").text(),
+        organization_id: id
+      }
+    }
+
+    $.ajax({
+      method: "POST",
+      url: "/brackets",
+      data: params
+    })
+
+    console.log(params)
+  })
+
+</script>
+
+<%= form_for @bracket do |f| %>
+  <%= f.collection_select :organization_id, Organization.all, :id, :name %>
+
+  <%= f.submit "Pick Your Team" %>
+
   <% end %>
-    <br>
-  <% end %>
-  <%= f.submit %>
-<% end %>

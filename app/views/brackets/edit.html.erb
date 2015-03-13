@@ -1,12 +1,5 @@
 <h1>Edit Your Bracket</h1>
+<%= form_for @bracket do |f| %>
 
-<%= form_for @bracket do |f|%>
-<%@column_names.each do |column|%>
-<% if !column.include? "0" %>
-<%= f.label column %>
-<%= f.text_field column %>
-<% end %>
-<br>
-<% end %>
 <%= f.submit %>
 <% end %>
