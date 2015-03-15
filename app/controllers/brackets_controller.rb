@@ -4,8 +4,6 @@ class BracketsController < ApplicationController
   before_action :authorize_user!, :except => [:index, :new, :create]
   before_action :lockout_user!, :only => [:create, :new, :edit, :update, :destroy]
 
-  #Admin id(10) needs to have access to all CRUD, make an exception
-
   def index
     @bracket = current_user.bracket
   end
@@ -13,7 +11,7 @@ class BracketsController < ApplicationController
   def show
     @bracket = current_user.bracket
     @organization = current_user.bracket.organization
-    actual_bracket = Bracket.find(10)
+    actual_bracket = Bracket.find(2)
     @score = @bracket.score(actual_bracket)
     @average_team_score = @organization.average_team_score
   end
@@ -25,7 +23,6 @@ class BracketsController < ApplicationController
     @column_names.delete("created_at")
     @column_names.delete("updated_at")
     @teams = Team.all
-
     @bracket = current_user.bracket
   end
 
@@ -89,12 +86,13 @@ end
   end
 
   def lockout_user!
-    lockout_date = Date.parse('2015-03-18')
+    if current_user.email != "admin@gmail.com"
+    lockout_date = Date.parse('2015-03-18')  #This may not be correct, ask for help because time zone isn't considered here
     if Date.today > lockout_date
       redirect_to brackets_path, notice: "Bracket picks are completed for this year. Try playing next year."
     end
+    end
   end
-
-  #make sure not to lock out admin with user id 10
+   
 
 end

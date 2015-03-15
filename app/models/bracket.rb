@@ -8,6 +8,7 @@ class Bracket < ActiveRecord::Base
     "W1C", "W1D", "W1E", "W1F", "W1G", "W1H", "W2A", "W2B", "W2C", "W2D", "W3A", "W3B", "W4A","E1A", "E1B", "E1C",
     "E1D", "E1E", "E1F", "E1G", "E1H", "E2A", "E2B", "E2C", "E2D", "E3A", "E3B", "E4A", "M5S", "W5E", "W6W"]
      #make sure all nodes are here
+     #admin account has an id of 10
 
   def score(actual_bracket)      #make an actual bracket here with admin's final results to compare if values of nodes match
     total_score = []
