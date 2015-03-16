@@ -11,9 +11,9 @@ class BracketsController < ApplicationController
   def show
     @bracket = current_user.bracket
     @organization = @bracket.organization
-    actual_bracket = Bracket.find(2)
-    @score = @bracket.score(actual_bracket)
-    @average_team_score = @organization.average_team_score
+    actual_bracket = Bracket.get_admin_bracket
+    @score = @bracket.score(actual_bracket) rescue 0
+    @average_team_score = @organization.average_team_score rescue 0
   end
 
   def edit
