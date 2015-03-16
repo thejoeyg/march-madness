@@ -167,7 +167,6 @@ ActiveRecord::Schema.define(version: 20150316074301) do
   create_table "teams", force: :cascade do |t|
     t.string   "name"
     t.integer  "ranking"
-    t.boolean  "status"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
