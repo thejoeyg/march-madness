@@ -18,7 +18,7 @@ class Organization < ActiveRecord::Base
       return total
     end
 
-    def score(actual_bracket)      #make an actual bracket here with admin's final results to compare if values of nodes match
+    def score(actual_bracket)      #make an actual bracket here with admin"s final results to compare if values of nodes match
       total_score = []
       NODES.each do |node|
         my_node_value = self.send node       #getting node value of prediction bracket

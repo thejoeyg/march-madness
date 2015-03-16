@@ -9,8 +9,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # POST /resource
   def create
-    if params[:galvanize_code] != "galvanize"
-      redirect_to new_user_session_path, notice: "You need the secret galvanize code to play."
+    if params[:galvanize_code] != 'galvanize'
+      redirect_to new_user_session_path, notice: 'You need the secret galvanize code to play.'
     else
       super
     end

@@ -2,8 +2,8 @@
 <html>
   <head>
 <title>CollegeBasketballBracketology</title>
-<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+<%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+<%= javascript_include_tag "application", "data-turbolinks-track" => true %>
 <%= csrf_meta_tags %>
   </head>
 <body>
@@ -11,24 +11,22 @@
   <div class="ui menu">
     <% if user_signed_in? %>
     <div class="item">
-      <div class="ui teal button"><%= link_to 'Account', edit_user_registration_path %></div>
+      <div class="ui teal button"><%= link_to "Account", edit_user_registration_path %></div>
     </div>
 
     <div class="item">
-      <div class="ui button"><%= link_to 'Sign out', destroy_user_session_path, :method => :delete %></div>
+      <div class="ui button"><%= link_to "Sign out", destroy_user_session_path, :method => :delete %></div>
     </div>
     <% else %>
 
     <div class="item">
-      <div class="ui teal button"><%= link_to 'Sign up', new_user_registration_path %></div>
+      <div class="ui teal button"><%= link_to "Sign up", new_user_registration_path %></div>
     </div>
     <div class="item">
-      <div class="ui button"><%= link_to 'Sign in', new_user_session_path %></div>
+      <div class="ui button"><%= link_to "Sign in", new_user_session_path %></div>
     </div>
     <% end %>
   </div>
-
-
 
     <% flash.each do |name, msg| %>
       <%= content_tag(:div, msg, class: "alert alert-#{name}") %>

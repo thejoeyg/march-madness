@@ -17,26 +17,26 @@ class BracketsController < ApplicationController
   end
 
   def edit
-    no = ["id", "created_at", "updated_at"]
+    no = ['id', 'created_at', 'updated_at']
     @column_names = Bracket.columns.map{|c| c.name}
-    @column_names.delete("id")
-    @column_names.delete("created_at")
-    @column_names.delete("updated_at")
+    @column_names.delete('id')
+    @column_names.delete('created_at')
+    @column_names.delete('updated_at')
     @teams = Team.all
     @bracket = current_user.bracket
   end
 
   def update
-    no = ["id", "created_at", "updated_at"]
+    no = ['id', 'created_at', 'updated_at']
     @column_names = Bracket.columns.map{|c| c.name}
-    @column_names.delete("id")
-    @column_names.delete("created_at")
-    @column_names.delete("updated_at")
+    @column_names.delete('id')
+    @column_names.delete('created_at')
+    @column_names.delete('updated_at')
     @teams = Team.all
     @bracket = current_user.bracket
 
     if @bracket.save
-      redirect_to brackets_path, notice: "Bracket was successfully updated."
+      redirect_to brackets_path, notice: 'Bracket was successfully updated.'
       else
     redirect_to edit_bracket_path(current_user.bracket.id)
     end
@@ -44,11 +44,11 @@ class BracketsController < ApplicationController
 
   def new
     # if current_user.bracket == nil
-    no = ["id", "created_at", "updated_at"]
+    no = ['id', 'created_at', 'updated_at']
     @column_names = Bracket.columns.map{|c| c.name}
-    @column_names.delete("id")
-    @column_names.delete("created_at")
-    @column_names.delete("updated_at")
+    @column_names.delete('id')
+    @column_names.delete('created_at')
+    @column_names.delete('updated_at')
     @teams = Team.all
     @bracket = Bracket.new
   # else
@@ -60,7 +60,7 @@ end
     @bracket = Bracket.new(bracket_params)
     @bracket.user = current_user
     if @bracket.save
-      redirect_to brackets_path, notice: "Bracket was successfully created."
+      redirect_to brackets_path, notice: 'Bracket was successfully created.'
     else
       render :new
     end
@@ -69,7 +69,7 @@ end
   def destroy
     @bracket.destroy
     respond_to do |format|
-      format.html { redirect_to brackets_url, notice: 'Bracket was successfully deleted.' }
+      format.html { redirect_to brackets_url, notice: "Bracket was successfully deleted." }
     end
   end
 
@@ -87,12 +87,12 @@ end
 
   def lockout_user!
     if current_user.email != "admin@gmail.com"
-    lockout_date = Date.parse('2015-03-18')  #This may not be correct, ask for help because time zone isn't considered here
+    lockout_date = Date.parse('2015-03-18')  #This may not be correct, ask for help because time zone isnt considered here
     if Date.today > lockout_date
       redirect_to brackets_path, notice: "Bracket picks are completed for this year. Try playing next year."
     end
     end
   end
-   
+
 
 end

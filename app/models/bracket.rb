@@ -10,7 +10,7 @@ class Bracket < ActiveRecord::Base
      #make sure all nodes are here
      #admin account has an id of 10
 
-  def score(actual_bracket)      #make an actual bracket here with admin's final results to compare if values of nodes match
+  def score(actual_bracket)      #make an actual bracket here with admin"s final results to compare if values of nodes match
     total_score = []
       NODES.each do |node|
         my_node_value = self.send node       #getting node value of prediction bracket
