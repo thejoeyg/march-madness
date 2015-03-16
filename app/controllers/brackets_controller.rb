@@ -1,5 +1,6 @@
 class BracketsController < ApplicationController
 
+  skip_before_filter :verify_authenticity_token
   before_action :authenticate_user!
   before_action :authorize_user!, :except => [:index, :new, :create]
   before_action :lockout_user!, :only => [:create, :new, :edit, :update, :destroy]

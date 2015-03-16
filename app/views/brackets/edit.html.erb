@@ -1501,6 +1501,7 @@ $(function() {
     ['8 Cincinnati', '9 Purdue'],
     ['5 West Virginia', '12 Buffalo'],
     ['4 Maryland', '13 Valparaiso'],
+
     ['6 Butler', '11 Texas'],
     ['3 Notre Dame', '14 Northeastern'],
     ['7 Wichita State', '10 Indiana'],
@@ -1529,6 +1530,7 @@ $(function() {
     ['3 Iowa State', '14 UAB'],
     ['7 Iowa', '10 Davidson'],
     ['2 Gonzaga', '15 North Dakota St.']
+
   ];
 
   var saveData = {
@@ -1540,6 +1542,11 @@ $(function() {
     init: saveData,
     save: function() {},
     skipConsolationRound: true
+  });
+
+  $('.bracket .label').each(function() {
+    var $el = $(this);
+    $el.attr('title', $el.text());
   });
 
   // Add default option to list of organizations
@@ -1593,6 +1600,15 @@ $(function() {
       url: '/brackets',
       data: {
         bracket: picksById
+      },
+      success: function() {
+        toastr.success('Bracket saved. Redirecting to home page...');
+        setTimeout(function() {
+          window.location.href = '/';
+        }, 2000);
+      },
+      failure: function() {
+        toastr.error('Error saving bracket. Talk to Helen.')
       }
     });
   });
