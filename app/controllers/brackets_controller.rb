@@ -10,7 +10,7 @@ class BracketsController < ApplicationController
 
   def show
     @bracket = current_user.bracket
-    @organization = current_user.bracket.organization
+    @organization = @bracket.organization
     actual_bracket = Bracket.find(2)
     @score = @bracket.score(actual_bracket)
     @average_team_score = @organization.average_team_score
@@ -35,32 +35,36 @@ class BracketsController < ApplicationController
     @teams = Team.all
     @bracket = current_user.bracket
 
-    if @bracket.save
-      redirect_to brackets_path, notice: 'Bracket was successfully updated.'
-      else
-    redirect_to edit_bracket_path(current_user.bracket.id)
+    if @bracket.update_attributes(bracket_params)
+      render json: {
+        success_url: bracket_path(@bracket)
+      }
+    else
+      redirect_to edit_bracket_path(current_user.bracket.id)
     end
   end
 
   def new
-    # if current_user.bracket == nil
-    no = ['id', 'created_at', 'updated_at']
-    @column_names = Bracket.columns.map{|c| c.name}
-    @column_names.delete('id')
-    @column_names.delete('created_at')
-    @column_names.delete('updated_at')
-    @teams = Team.all
-    @bracket = Bracket.new
-  # else
-  #   redirect_to edit_bracket_path(current_user.bracket.id)
-  # end
+    if current_user.bracket.nil?
+      no = ['id', 'created_at', 'updated_at']
+      @column_names = Bracket.columns.map{|c| c.name}
+      @column_names.delete('id')
+      @column_names.delete('created_at')
+      @column_names.delete('updated_at')
+      @teams = Team.all
+      @bracket = Bracket.new
+    else
+      redirect_to edit_bracket_path(current_user.bracket.id)
+    end
 end
 
   def create
     @bracket = Bracket.new(bracket_params)
     @bracket.user = current_user
     if @bracket.save
-      redirect_to brackets_path, notice: 'Bracket was successfully created.'
+      render json: {
+        success_url: bracket_path(@bracket)
+      }
     else
       render :new
     end

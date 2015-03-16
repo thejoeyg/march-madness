@@ -1,39 +1,43 @@
 <!DOCTYPE html>
 <html>
-  <head>
-<title>CollegeBasketballBracketology</title>
-<%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
-<%= javascript_include_tag "application", "data-turbolinks-track" => true %>
-<%= csrf_meta_tags %>
-  </head>
+<head>
+  <title>Basketball Championship</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
 <body>
-
-  <div class="ui menu">
-    <% if user_signed_in? %>
-    <div class="item">
-      <div class="ui teal button"><%= link_to "Account", edit_user_registration_path %></div>
+  <header class="navbar navbar-default" role="navigation">
+    <div class="navbar-inner">
+      <div class="container">
+        <div id="logo" class="navbar-brand"><%= link_to "2015 Basketball Tournament Bracket", root_path %></div>
+        <nav class="collapse navbar-collapse navbar-ex1-collapse">
+          <% if user_signed_in? -%>
+          <ul class="nav navbar-nav navbar-right">
+            <li><%= link_to 'Submit bracket', new_bracket_path %></li>
+            <li><%= link_to 'Account', edit_user_registration_path %></li>
+            <li><%= link_to 'Sign out', destroy_user_session_path, :method => :delete %></li>
+          </ul>
+          <% else -%>
+          <ul class="nav navbar-nav pull-right">
+            <li><%= link_to 'Sign up', new_user_registration_path %></li>
+            <li><%= link_to 'Sign in', new_user_session_path %></li>
+          </ul>
+          <% end -%>
+        </nav>
+      </div>
     </div>
+  </header>
 
-    <div class="item">
-      <div class="ui button"><%= link_to "Sign out", destroy_user_session_path, :method => :delete %></div>
-    </div>
-    <% else %>
-
-    <div class="item">
-      <div class="ui teal button"><%= link_to "Sign up", new_user_registration_path %></div>
-    </div>
-    <div class="item">
-      <div class="ui button"><%= link_to "Sign in", new_user_session_path %></div>
-    </div>
-    <% end %>
-  </div>
-
+  <div id="main_content" class="container">
     <% flash.each do |name, msg| %>
-      <%= content_tag(:div, msg, class: "alert alert-#{name}") %>
-      <% end %>
+    <%= content_tag(:div, msg, class: "alert alert-info") %>
+    <% end %>
 
-
-  <%= yield %>
-
-  </body>
+    <div id="content" class="col-md-9 center-block">
+      <%= yield %>
+    </div>
+  </div>
+</div>
+</body>
 </html>

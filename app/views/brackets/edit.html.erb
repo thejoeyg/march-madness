@@ -1,5 +1,730 @@
 <h1>Edit Your Bracket</h1>
-<%= form_for @bracket do |f| %>
+<div class="wrapper">
+  <div id="midwest-1" class="">
+    <ul></ul>
+  </div>
 
-<%= f.submit %>
-<% end %>
+  <div id="midwest-2" class="">
+    <ul></ul>
+  </div>
+
+  <div id="midwest-3" class="">
+    <ul></ul>
+  </div>
+
+  <div id="midwest-4" class="">
+    <ul></ul>
+  </div>
+
+  <div class="dummy"></div>
+
+  <div id="south-1" class="">
+    <ul></ul>
+  </div>
+  <div id="south-2" class="">
+    <ul></ul>
+  </div>
+  <div id="south-3" class="">
+    <ul></ul>
+  </div>
+  <div id="south-4" class="">
+    <ul></ul>
+  </div>
+</div>
+</div>
+
+<!-- absolute position 3 nodes in middle -->
+<div class="finals">
+  <ul>
+    <li id="M5S"></li>
+    <li id="W6W"></li>
+    <li id="W5E"></li>
+  </ul>
+</div>
+
+<div class="wrapper">
+  <div id="west-1" class="">
+    <ul></ul>
+  </div>
+  <div id="west-2" class="">
+    <ul></ul>
+  </div>
+  <div id="west-3" class="">
+    <ul></ul>
+  </div>
+  <div id="west-4" class="">
+    <ul></ul>
+  </div>
+  <div class="dummy"></div>
+  <div id="east-1" class="">
+    <ul></ul>
+  </div>
+  <div id="east-2" class="">
+    <ul></ul>
+  </div>
+  <div id="east-3" class="">
+    <ul></ul>
+  </div>
+  <div id="east-4" class="">
+    <ul></ul>
+  </div>
+</div>
+
+
+<button id="save">SUBMIT BRACKET</button>
+
+
+
+<script charset="utf-8">
+  var midwest = [
+  {
+    name: '1 Kentucky',
+    id: 'M0A',
+    target: 'M1A',
+    col: 1
+  }, {
+    name: '16 Hampton/Manhattan',
+    id: 'M0B',
+    target: 'M1A',
+    col: 1
+  }, {
+    name: '8 Cincinnati',
+    id: 'M0C',
+    target: 'M1B',
+    col: 1
+  }, {
+    name: '9 Purdue',
+    id: 'M0D',
+    target: 'M1B',
+    col: 1
+  }, {
+    name: '5 West Virginia',
+    id: 'M0E',
+    target: 'M1C',
+    col: 1
+  }, {
+    name: '12 Buffalo',
+    id: 'M0F',
+    target: 'M1C',
+    col: 1
+  }, {
+    name: '4 Maryland',
+    id: 'M0G',
+    target: 'M1D',
+    col: 1
+  }, {
+    name: '13 Valparaiso',
+    id: 'M0H',
+    target: 'M1D',
+    col: 1
+  }, {
+    name: '6 Butler',
+    id: 'M0I',
+    target: 'M1E',
+    col: 1
+  }, {
+    name: '11 Texas',
+    id: 'M0J',
+    target: 'M1E',
+    col: 1
+  }, {
+    name: '3 Notre Dame',
+    id: 'M0K',
+    target: 'M1F',
+    col: 1
+  }, {
+    name: '14 Northeastern',
+    id: 'M0L',
+    target: 'M1F',
+    col: 1
+  }, {
+    name: '7 Wichita State',
+    id: 'M0M',
+    target: 'M1G',
+    col: 1
+  }, {
+    name: '10 Indiana',
+    id: 'M0N',
+    target: 'M1G',
+    col: 1
+  }, {
+    name: '2 Kansas',
+    id: 'M0O',
+    target: 'M1H',
+    col: 1
+  }, {
+    name: '15 New Mexico State',
+    id: 'M0P',
+    target: 'M1H',
+    col: 1
+  }, {
+    id: 'M1A',
+    target: 'M2A',
+    col: 2
+  }, {
+    id: 'M1B',
+    target: 'M2A',
+    col: 2
+  }, {
+    id: 'M1C',
+    target: 'M2B',
+    col: 2
+  }, {
+    id: 'M1D',
+    target: 'M2B',
+    col: 2
+  }, {
+    id: 'M1E',
+    target: 'M2C',
+    col: 2
+  }, {
+    id: 'M1F',
+    target: 'M2C',
+    col: 2
+  }, {
+    id: 'M1G',
+    target: 'M2D',
+    col: 2
+  }, {
+    id: 'M1H',
+    target: 'M2D',
+    col: 2
+  }, {
+    id: 'M2A',
+    target: 'M3A',
+    col: 3
+  }, {
+    id: 'M2B',
+    target: 'M3A',
+    col: 3
+  }, {
+    id: 'M2C',
+    target: 'M3B',
+    col: 3
+  }, {
+    id: 'M2D',
+    target: 'M3B',
+    col: 3
+  }, {
+    id: 'M3A',
+    target: 'M4A',
+    col: 4
+  }, {
+    id: 'M3B',
+    target: 'M4A',
+    col: 4
+  }, {
+    id: 'M4A',
+    target: 'M5S',
+    col: 5
+  }, {
+    id: 'M5S',
+    target: 'W6W',
+    col: 5
+  },
+  ];
+
+  var south = [
+  {
+    name: 'Villanova 1',
+    id: 'S0A',
+    target: 'S1A',
+    col: 1
+  }, {
+    name: 'Lafayette 16',
+    id: 'S0B',
+    target: 'S1A',
+    col: 1
+  }, {
+    name: 'NC State 8',
+    id: 'S0C',
+    target: 'S1B',
+    col: 1
+  }, {
+    name: 'LSU 9',
+    id: 'S0D',
+    target: 'S1B',
+    col: 1
+  }, {
+    name: 'UNI 5',
+    id: 'S0E',
+    target: 'S1C',
+    col: 1
+  }, {
+    name: 'Wyoming 12',
+    id: 'S0F',
+    target: 'S1C',
+    col: 1
+  }, {
+    name: 'Louisville 4',
+    id: 'S0G',
+    target: 'S1D',
+    col: 1
+  }, {
+    name: 'UC Irvine',
+    id: 'S0H',
+    target: 'S1D',
+    col: 1
+  }, {
+    name: 'Providence',
+    id: 'S0I',
+    target: 'S1E',
+    col: 1
+  }, {
+    name: 'Boise State 11/Dayton 11',
+    id: 'S0J',
+    target: 'S1E',
+    col: 1
+  }, {
+    name: 'Oklahoma 3',
+    id: 'S0K',
+    target: 'S1F',
+    col: 1
+  }, {
+    name: 'Albany 14',
+    id: 'S0L',
+    target: 'S1F',
+    col: 1
+  }, {
+    name: 'Michigan State 7',
+    id: 'S0M',
+    target: 'S1G',
+    col: 1
+  }, {
+    name: 'Georgia 10',
+    id: 'S0N',
+    target: 'S1G',
+    col: 1
+  }, {
+    name: 'Virginia 2',
+    id: 'S0O',
+    target: 'S1H',
+    col: 1
+  }, {
+    name: 'Belmont 15',
+    id: 'S0P',
+    target: 'S1H',
+    col: 1
+  }, {
+    id: 'S1A',
+    target: 'S2A',
+    col: 2
+  }, {
+    id: 'S1B',
+    target: 'S2A',
+    col: 2
+  }, {
+    id: 'S1C',
+    target: 'S2B',
+    col: 2
+  }, {
+    id: 'S1D',
+    target: 'S2B',
+    col: 2
+  }, {
+    id: 'S1E',
+    target: 'S2C',
+    col: 2
+  }, {
+    id: 'S1F',
+    target: 'S2C',
+    col: 2
+  }, {
+    id: 'S1G',
+    target: 'S2D',
+    col: 2
+  }, {
+    id: 'S1H',
+    target: 'S2D',
+    col: 2
+  }, {
+    id: 'S2A',
+    target: 'S3A',
+    col: 3
+  }, {
+    id: 'S2B',
+    target: 'S3A',
+    col: 3
+  }, {
+    id: 'S2C',
+    target: 'S3B',
+    col: 3
+  }, {
+    id: 'S2D',
+    target: 'S3B',
+    col: 3
+  }, {
+    id: 'S3A',
+    target: 'S4A',
+    col: 4
+  }, {
+    id: 'S3B',
+    target: 'S4A',
+    col: 4
+  }, {
+    id: 'S4A',
+    target: 'M5S',
+    col: 5
+  }, {
+    id: 'M5S',
+    target: 'W6W',
+    col: 5
+  },
+  ];
+
+  var west = [
+  {
+    name: '1 Wisconsin',
+    id: 'W0A',
+    target: 'W1A',
+    col: 1
+  }, {
+    name: '16 Coastal Caro.',
+    id: 'W0B',
+    target: 'W1A',
+    col: 1
+  }, {
+    name: '8 Oregon',
+    id: 'W0C',
+    target: 'W1B',
+    col: 1
+  }, {
+    name: '9 Oklahoma State',
+    id: 'W0D',
+    target: 'W1B',
+    col: 1
+  }, {
+    name: '5 Arkansas',
+    id: 'W0E',
+    target: 'W1C',
+    col: 1
+  }, {
+    name: '12 Wofford',
+    id: 'W0F',
+    target: 'W1C',
+    col: 1
+  }, {
+    name: '4 North Carolina',
+    id: 'W0G',
+    target: 'W1D',
+    col: 1
+  }, {
+    name: '13 Harvard',
+    id: 'W0H',
+    target: 'W1D',
+    col: 1
+  }, {
+    name: '6 Xavier',
+    id: 'W0I',
+    target: 'W1E',
+    col: 1
+  }, {
+    name: '11 BYU/Mississippi',
+    id: 'W0J',
+    target: 'W1E',
+    col: 1
+  }, {
+    name: '3 Baylor',
+    id: 'W0K',
+    target: 'W1F',
+    col: 1
+  }, {
+    name: '14 Georgia State',
+    id: 'W0L',
+    target: 'W1F',
+    col: 1
+  }, {
+    name: '7 VCU',
+    id: 'W0M',
+    target: 'W1G',
+    col: 1
+  }, {
+    name: '10 Ohio State',
+    id: 'W0N',
+    target: 'W1G',
+    col: 1
+  }, {
+    name: '2 Arizona',
+    id: 'W0O',
+    target: 'W1H',
+    col: 1
+  }, {
+    name: '15 Texas Southern',
+    id: 'W0P',
+    target: 'W1H',
+    col: 1
+  }, {
+    id: 'WSA',
+    target: 'W2A',
+    col: 2
+  }, {
+    id: 'W1B',
+    target: 'W2A',
+    col: 2
+  }, {
+    id: 'W1C',
+    target: 'W2B',
+    col: 2
+  }, {
+    id: 'W1D',
+    target: 'W2B',
+    col: 2
+  }, {
+    id: 'W1E',
+    target: 'W2C',
+    col: 2
+  }, {
+    id: 'W1F',
+    target: 'W2C',
+    col: 2
+  }, {
+    id: 'W1G',
+    target: 'W2D',
+    col: 2
+  }, {
+    id: 'W1H',
+    target: 'W2D',
+    col: 2
+  }, {
+    id: 'W2A',
+    target: 'W3A',
+    col: 3
+  }, {
+    id: 'W2B',
+    target: 'W3A',
+    col: 3
+  }, {
+    id: 'W2C',
+    target: 'W3B',
+    col: 3
+  }, {
+    id: 'W2D',
+    target: 'W3B',
+    col: 3
+  }, {
+    id: 'W3A',
+    target: 'W4A',
+    col: 4
+  }, {
+    id: 'W3B',
+    target: 'W4A',
+    col: 4
+  }, {
+    id: 'W4A',
+    target: 'W5E',
+    col: 5
+  }, {
+    id: 'W5E',
+    target: 'W6W',
+    col: 5
+  },
+  ];
+
+  var east = [
+  {
+    name: 'Duke 1',
+    id: 'E0A',
+    target: 'E1A',
+    col: 1
+  }, {
+    name: 'Univ. of North Florida/Robert Morris 16',
+    id: 'E0B',
+    target: 'E1A',
+    col: 1
+  }, {
+    name: 'San Diego State 8',
+    id: 'E0C',
+    target: 'E1B',
+    col: 1
+  }, {
+    name: "St. John's 9",
+    id: 'E0D',
+    target: 'E1B',
+    col: 1
+  }, {
+    name: 'Utah 5',
+    id: 'E0E',
+    target: 'E1C',
+    col: 1
+  }, {
+    name: 'Steph F. Austin 12',
+    id: 'E0F',
+    target: 'E1C',
+    col: 1
+  }, {
+    name: 'Georgetown 4',
+    id: 'E0G',
+    target: 'E1D',
+    col: 1
+  }, {
+    name: 'Eastern Washington 13',
+    id: 'E0H',
+    target: 'E1D',
+    col: 1
+  }, {
+    name: 'SMU 6',
+    id: 'E0I',
+    target: 'E1E',
+    col: 1
+  }, {
+    name: 'UCLA 11',
+    id: 'E0J',
+    target: 'E1E',
+    col: 1
+  }, {
+    name: 'Iowa State 3',
+    id: 'E0K',
+    target: 'E1F',
+    col: 1
+  }, {
+    name: 'UAB 14',
+    id: 'E0L',
+    target: 'E1F',
+    col: 1
+  }, {
+    name: 'Iowa 7',
+    id: 'E0M',
+    target: 'E1G',
+    col: 1
+  }, {
+    name: 'Davidson 10',
+    id: 'E0N',
+    target: 'E1G',
+    col: 1
+  }, {
+    name: 'Gonzaga 2',
+    id: 'E0O',
+    target: 'E1H',
+    col: 1
+  }, {
+    name: 'North Dakota St. 15',
+    id: 'E0P',
+    target: 'E1H',
+    col: 1
+  }, {
+    id: 'ESA',
+    target: 'E2A',
+    col: 2
+  }, {
+    id: 'E1B',
+    target: 'E2A',
+    col: 2
+  }, {
+    id: 'E1C',
+    target: 'E2B',
+    col: 2
+  }, {
+    id: 'E1D',
+    target: 'E2B',
+    col: 2
+  }, {
+    id: 'E1E',
+    target: 'E2C',
+    col: 2
+  }, {
+    id: 'E1F',
+    target: 'E2C',
+    col: 2
+  }, {
+    id: 'E1G',
+    target: 'E2D',
+    col: 2
+  }, {
+    id: 'E1H',
+    target: 'E2D',
+    col: 2
+  }, {
+    id: 'E2A',
+    target: 'E3A',
+    col: 3
+  }, {
+    id: 'E2B',
+    target: 'E3A',
+    col: 3
+  }, {
+    id: 'E2C',
+    target: 'E3B',
+    col: 3
+  }, {
+    id: 'E2D',
+    target: 'E3B',
+    col: 3
+  }, {
+    id: 'E3A',
+    target: 'E4A',
+    col: 4
+  }, {
+    id: 'E3B',
+    target: 'E4A',
+    col: 4
+  }, {
+    id: 'E4A',
+    target: 'W5E',
+    col: 5
+  }, {
+    id: 'W5E',
+    target: 'W6W',
+    col: 5
+  },
+  ];
+
+  var parseData = function (id, data) {
+    for(var i = 0, len = data.length; i < len; i++) {
+      var ul = $('#' + id + '-' + data[i].col).find('ul'),
+      li = $('<li>');
+
+        li.attr('id', data[i].id);
+        li.data('target', data[i].target);
+
+        if(data[i].name) {
+          li.text(data[i].name);
+        }
+
+        li.on('click', function () {
+          var target = $('#' + $(this).data('target'));
+
+          target.text($(this).text());
+        });
+
+        ul.append(li);
+      }
+    }
+
+    parseData('midwest', midwest);
+    parseData('east', east);
+    parseData('west', west);
+    parseData('south', south);
+
+
+    $('#save').click(function(){
+
+      var id = $('#bracket_organization_id').val()
+      var params = {
+        _method: 'PUT',
+        bracket: {
+          <% Bracket::NODES.each do |node| %>
+            <%= node %>: $("#<%= node %>").text(),
+          <% end %>
+          organization_id: id
+        }
+      }
+
+      $.ajax({
+        method: "POST",
+        url: "/brackets/<%= @bracket.id %>",
+        data: params
+      }).done(function(data) {
+        window.location.href = data.success_url;
+      })
+
+      console.log(params)
+    })
+
+  </script>
+
+  <%= form_for @bracket do |f| %>
+  <%= f.collection_select :organization_id, Organization.all, :id, :name %>
+
+  <%= f.submit "Pick Your Team" %>
+
+  <% end %>

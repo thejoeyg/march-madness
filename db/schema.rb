@@ -7,11 +7,11 @@
 # database schema. If you need to create the application database on another
 # system, you should be using db:schema:load, not running all the migrations
 # from scratch. The latter is a flawed and unsustainable approach (the more migrations
-# you"ll amass, the slower it"ll run and the greater likelihood for issues).
+# you'll amass, the slower it'll run and the greater likelihood for issues).
 #
-# It"s strongly recommended that you check this file into your version control system.
+# It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150313224204) do
+ActiveRecord::Schema.define(version: 20150316064319) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -148,6 +148,7 @@ ActiveRecord::Schema.define(version: 20150313224204) do
     t.boolean  "admin"
     t.integer  "user_id"
     t.integer  "organization_id"
+    t.string   "S1F"
   end
 
   add_index "brackets", ["user_id"], name: "index_brackets_on_user_id", using: :btree

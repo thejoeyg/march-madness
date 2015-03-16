@@ -23,11 +23,13 @@ gem "jbuilder", "~> 2.0"
 # bundle exec rake doc:rails generates the API under doc/api.
 gem "sdoc", "~> 0.4.0", group: :doc
 
-gem "semantic-ui-sass", github: "doabit/semantic-ui-sass", branch: "v1.0beta"
+# gem 'twitter-bootstrap-rails', '~> 3.2.0'
+
+gem 'bootstrap-sass', '~> 3.3.1'
 
 gem "devise", "~> 3.4.0"
 
-gem "cancancan", "~> 1.10"
+
 
 # Use ActiveModel has_secure_password
 # gem "bcrypt", "~> 3.1.7"
