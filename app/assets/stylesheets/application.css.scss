@@ -14,6 +14,8 @@
 *
 *= require_tree .
 *= require_self
+*= bracket
+*= require jQuery.bracket
 */
 
 @import "bootstrap-sprockets";
