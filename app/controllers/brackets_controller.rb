@@ -18,6 +18,7 @@ class BracketsController < ApplicationController
 
     @top_ten_brackets = get_top_ten_brackets(actual_bracket)
     @top_ten_team_brackets = get_top_ten_team_brackets
+    @users = User.all
   end
 
   def edit
