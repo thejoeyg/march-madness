@@ -12,20 +12,20 @@
 </p>
 
 
-  <h3>Top 10 Brackets</h3>
+<h3>Top 10 Brackets</h3>
 
 
 <ol>
   <% @top_ten_brackets.each do |item| %>
-    <li><%= link_to item.user.email, bracket_path(item) %> (<%= item.organization.name %>)</li>
+  <li><%= link_to item.user.email, bracket_path(item) %> (<%= item.organization.name %>)</li>
   <% end %>
 </ol>
 
-  <h3>Top 10 Team Brackets</h3>
+<h3>Top 10 Team Brackets</h3>
 
 <ol>
   <% @top_ten_team_brackets.each do |item| %>
-    <li><%= item.name %> (Average Team Score: <%= item.average_team_score %>)</li>
+  <li><%= item.name %> (Average Team Score: <%= item.average_team_score %>)</li>
   <% end %>
 </ol>
 
@@ -33,12 +33,12 @@
 <% if is_admin? %>
 
 <h3>All User Emails</h3>
-  <ol>
+<ol>
   <% @users.each do |user|  %>
-    <li><%= user.email %></li>
-    <% end %>
-  </ol>
+  <li><%= user.email %></li>
   <% end %>
+</ol>
+<% end %>
 
 
 
