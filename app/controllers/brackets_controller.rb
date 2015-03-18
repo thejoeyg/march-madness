@@ -115,7 +115,7 @@ end
 
   def lockout_user!
     if current_user.email != "admin@admin.com"
-    lockout_date = Date.parse('2015-03-18')  #This may not be correct, ask for help because time zone isnt considered here
+    lockout_date = Date.parse('2015-03-20')  #This may not be correct, ask for help because time zone isnt considered here
     if Date.today > lockout_date
       redirect_to brackets_path, notice: "Bracket picks are completed for this year. Try playing next year."
     end
