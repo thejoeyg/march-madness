@@ -17,7 +17,7 @@ class Bracket < ActiveRecord::Base
   end
 
   def self.get_admin_bracket
-    Bracket.find(2) rescue Bracket.new
+    Bracket.find(3) rescue Bracket.new
   end
 
   private
@@ -40,6 +40,8 @@ class Bracket < ActiveRecord::Base
       else
         0
       end
+    else
+      0
     end
   end
 

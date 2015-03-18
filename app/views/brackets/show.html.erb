@@ -3,6 +3,34 @@
 
 <div id="brackets"></div>
 
+<p>
+  Your score is: <%= @score %>
+</p>
+
+<p>
+  Your team score is: <%= @average_team_score %>
+</p>
+
+<p>
+  Top 10 brackets
+</p>
+
+<ol>
+  <% @top_ten_brackets.each do |item| %>
+    <li><%= link_to item.user.email, bracket_path(item) %> (<%= item.organization.name %>)</li>
+  <% end %>
+</ol>
+
+<p>
+  Top 10 team brackets
+</p>
+
+<ol>
+  <% @top_ten_team_brackets.each do |item| %>
+    <li><%= item.name %> (Average Team Score: <%= item.average_team_score %>)</li>
+  <% end %>
+</ol>
+
 <script>
 /**
 * brackets.js
@@ -127,11 +155,3 @@ $(function() {
 
 });
 </script>
-
-<p>
-  Your score is: <%= @score %>
-</p>
-
-<p>
-  Your team score is: <%= @average_team_score %>
-</p>
