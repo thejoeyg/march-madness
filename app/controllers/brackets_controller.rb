@@ -76,6 +76,7 @@ end
   end
 
   def destroy
+    @bracket = Bracket.find(params[:id])
     @bracket.destroy
     respond_to do |format|
       format.html { redirect_to brackets_url, notice: "Bracket was successfully deleted." }

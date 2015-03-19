@@ -6,6 +6,13 @@
     <% end %>
     <button id="save">Save</button>
 
+    <% if is_admin? %>
+      <%= link_to "Delete", bracket_path(@bracket), method: :delete %>
+
+      <div id="is_admin">
+      </div>
+    <% end %>
+
     <script>
     /**
     * brackets.js
@@ -135,6 +142,8 @@
       $('#save').click(function() {
         var numTeams = teams.length * 2;
         var maxMatchId = numTeams * 2 - 2;
+        var is_admin = $('#is_admin')[0]
+        
 
         var picksById = {};
         $('.score').each(function() {
@@ -157,10 +166,12 @@
           }
         });
 
-        for (i = numTeams; i <= maxMatchId; ++i) {
-          if (!(i in picksById)) {
-            toastr.error('Please fill out the entire bracket before saving');
-            return;
+        if(!is_admin){
+          for (i = numTeams; i <= maxMatchId; ++i) {
+            if (!(i in picksById)) {
+              toastr.error('Please fill out the entire bracket before saving');
+              return;
+            }
           }
         }
 

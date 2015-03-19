@@ -1,9 +1,14 @@
 <div id="brackets"></div>
 
   <%= form_for @bracket do |f| %>
-  <%= f.collection_select :organization_id, Organization.all, :id, :name %>
+  <%= f.collection_select :organization_id, Organization.order("name"), :id, :name %>
   <% end %>
   <button id="save">Save</button>
+
+  <% if is_admin? %>
+    <div id="is_admin">
+    </div>
+  <% end %>
 <script>
   /**
   * brackets.js
@@ -78,6 +83,9 @@
       //  positionClass: 'toast-top-center'
       //};
       $('#save').click(function() {
+
+        var is_admin = $('#is_admin')[0]
+        console.log(is_admin)
         var numTeams = teams.length * 2;
         var maxMatchId = numTeams * 2 - 2;
 
@@ -102,10 +110,12 @@
           }
         });
 
-        for (i = numTeams; i <= maxMatchId; ++i) {
-          if (!(i in picksById)) {
-            toastr.error('Please fill out the entire bracket before saving');
-            return;
+        if(!is_admin){
+          for (i = numTeams; i <= maxMatchId; ++i) {
+            if (!(i in picksById)) {
+              toastr.error('Please fill out the entire bracket before saving');
+              return;
+            }
           }
         }
 
