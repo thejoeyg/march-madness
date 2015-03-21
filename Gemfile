@@ -29,6 +29,7 @@ gem 'bootstrap-sass', '~> 3.3.1'
 
 gem "devise", "~> 3.4.0"
 
+gem 'rollbar', '~> 1.4.4'
 
 
 # Use ActiveModel has_secure_password
