@@ -96,11 +96,6 @@ end
     top_brackets = Organization.all.sort_by do |org|
       -org.average_team_score
     end
-
-    top_brackets.select! do |org|
-      org.average_team_score > 0
-    end
-
     return top_brackets[0..9]
   end
 

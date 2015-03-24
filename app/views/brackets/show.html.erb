@@ -17,7 +17,8 @@
 
 <ol>
   <% @top_ten_brackets.each do |item| %>
-  <li><%= link_to item.user.email, bracket_path(item) %> (<%= item.organization.name %>)</li>
+  <li><%= link_to item.user.email, bracket_path(item) %> (<%= item.organization.name %>, Score: <%= item.score(Bracket.get_admin_bracket)
+  %>)</li>
   <% end %>
 </ol>
 

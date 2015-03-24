@@ -84,5 +84,5 @@
    "Women Who Code",
    "Yard Club",
 ].each do |name|
-  Organization.create!(name: name)
+  Organization.first_or_create!(name: name)
 end
