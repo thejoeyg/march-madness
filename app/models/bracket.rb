@@ -2,6 +2,8 @@ class Bracket < ActiveRecord::Base
   belongs_to :user
   belongs_to :organization
 
+  scope :non_admin, -> { joins(:user).where("email <> ?", 'admin@admin.com') }
+
   NODES = (127.times.map &:to_s)
      #make sure all nodes are here
      #admin account has an id of 10

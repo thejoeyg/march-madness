@@ -86,7 +86,7 @@ end
   private
 
   def get_top_ten_brackets(actual_bracket)
-    top_brackets = Bracket.where.not(id: 3).sort_by do |bracket|
+    top_brackets = Bracket.non_admin.sort_by do |bracket|
       -bracket.score(actual_bracket)
     end
     return top_brackets[0..9]

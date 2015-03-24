@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
 
+  belongs_to :organization
   has_one :bracket
 
   # Include default devise modules. Others available are:
