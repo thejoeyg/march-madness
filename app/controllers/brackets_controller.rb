@@ -3,7 +3,7 @@ class BracketsController < ApplicationController
   skip_before_filter :verify_authenticity_token
   before_action :authenticate_user!
   # before_action :authorize_user!, :except => [:index, :new, :create]
-  before_action :lockout_user!, :only => [:create, :new, :edit, :update, :destroy]
+  # before_action :lockout_user!, :only => [:create, :new, :edit, :update, :destroy]
 
   def index
     @bracket = current_user.bracket
@@ -110,14 +110,14 @@ end
     end
   end
 
-  def lockout_user!
-    if current_user.email != "admin@admin.com"
-    lockout_date = Date.parse('2015-03-20')  #This may not be correct, ask for help because time zone isnt considered here
-    if Date.today > lockout_date
-      redirect_to brackets_path, notice: "Bracket picks are completed for this year. Try playing next year."
-    end
-    end
-  end
+  # def lockout_user!
+  #   if current_user.email != "admin@admin.com"
+  #   lockout_date = Date.parse('2015-03-20')  #This may not be correct, ask for help because time zone isnt considered here
+  #   if Date.today > lockout_date
+  #     redirect_to brackets_path, notice: "Bracket picks are completed for this year. Try playing next year."
+  #   end
+  #   end
+  # end
 
 
 end
