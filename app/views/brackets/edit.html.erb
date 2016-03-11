@@ -143,7 +143,7 @@
         var numTeams = teams.length * 2;
         var maxMatchId = numTeams * 2 - 2;
         var is_admin = $('#is_admin')[0]
-        
+
 
         var picksById = {};
         $('.score').each(function() {
@@ -174,13 +174,6 @@
             }
           }
         }
-
-        var orgVal = $('#bracket_organization_id').val();
-        if (orgVal === '0') {
-          toastr.error('Please select an organization');
-          return;
-        }
-        picksById.organization_id = orgVal;
 
         $.ajax({
           method: 'POST',

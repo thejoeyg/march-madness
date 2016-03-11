@@ -19,7 +19,7 @@ class Bracket < ActiveRecord::Base
   end
 
   def self.get_admin_bracket
-    User.find_by(email: 'admin@admin.com').bracket
+    User.find_by(email: 'jgiambrone@weblinc.com').bracket
   end
 
   private
