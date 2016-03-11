@@ -1,8 +1,6 @@
 <div id="brackets"></div>
 
-  <%= form_for @bracket do |f| %>
-  <%= f.collection_select :organization_id, Organization.order("name"), :id, :name %>
-  <% end %>
+  <%= form_for @bracket do |f| %><% end %>
   <button id="save">Save</button>
 
   <% if is_admin? %>
@@ -131,7 +129,7 @@
             window.location.href = data.success_url;
           },
           failure: function() {
-            toastr.error('Error saving bracket. Talk to Helen.')
+            toastr.error('Error saving bracket. Talk to Joe.')
           }
         });
       });
