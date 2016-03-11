@@ -31,6 +31,8 @@ gem "devise", "~> 3.4.0"
 
 gem 'rollbar', '~> 1.4.4'
 
+gem 'haml'
+
 
 # Use ActiveModel has_secure_password
 # gem "bcrypt", "~> 3.1.7"
