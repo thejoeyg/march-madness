@@ -169,6 +169,7 @@ ActiveRecord::Schema.define(version: 20150316074301) do
     t.integer  "ranking"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "region"
   end
 
   create_table "users", force: :cascade do |t|
