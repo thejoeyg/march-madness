@@ -1,9 +1,0 @@
-<h1>Pick Your 2015 College Championship Teams!</h1>
-
-
-<% if current_user.bracket != nil %>
-<%= link_to "Edit Your Winning Teams!", edit_bracket_path(@bracket) %>
-<%= link_to "Bracket results", bracket_path(@bracket) %>
-<% else %>
-<%= link_to "Pick Your Winning Teams!", new_bracket_path %>
-<% end %>

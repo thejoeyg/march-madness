@@ -1,0 +1,13 @@
+%h1 Pick Your #{Date.today.year} College Championship Teams!
+- if current_user.bracket != nil
+  = link_to "Edit Your Winning Teams!", edit_bracket_path(@bracket)
+  = link_to "Bracket results", bracket_path(@bracket)
+  %h3 Leaderboard
+  %ol
+  - @leaderboard.each do |item|
+    %li
+      = link_to item.user.email, bracket_path(item)
+      (Score: #{item.score(Bracket.get_admin_bracket)})
+
+- else
+  = link_to "Pick Your Winning Teams!", new_bracket_path

@@ -7,17 +7,17 @@ class BracketsController < ApplicationController
 
   def index
     @bracket = current_user.bracket
+    @leaderboard = get_leaderboard(admin_bracket)
   end
 
   def show
     @bracket = Bracket.find(params[:id])
-    @organization = @bracket.organization
-    actual_bracket = Bracket.get_admin_bracket
-    @score = @bracket.score(actual_bracket) rescue 0
-    @average_team_score = @organization.average_team_score rescue 0
+    # @organization = @bracket.organization
+    @score = @bracket.score(admin_bracket) rescue 0
+    # @average_team_score = @organization.average_team_score rescue 0
 
-    @top_ten_brackets = get_top_ten_brackets(actual_bracket)
-    @top_ten_team_brackets = get_top_ten_team_brackets
+    @leaderboard = get_leaderboard(admin_bracket)
+    # @top_ten_team_brackets = get_top_ten_team_brackets
     @users = User.all
   end
 
@@ -86,7 +86,7 @@ end
 
   private
 
-  def get_top_ten_brackets(actual_bracket)
+  def get_leaderboard(actual_bracket)
     top_brackets = Bracket.non_admin.sort_by do |bracket|
       -bracket.score(actual_bracket)
     end
@@ -109,6 +109,10 @@ end
     if @bracket.user != current_user
       redirect_to brackets_path, error: "You are not authorized to view someone else's bracket."
     end
+  end
+
+  def admin_bracket
+    @admin_bracket ||= Bracket.get_admin_bracket
   end
 
   # def lockout_user!

@@ -7,29 +7,15 @@
   Your score is: <%= @score %>
 </p>
 
-<p>
-  Your team score is: <%= @average_team_score %>
-</p>
 
-
-<h3>Top 10 Brackets</h3>
-
+<h3>Leader Board</h3>
 
 <ol>
-  <% @top_ten_brackets.each do |item| %>
+  <% @leaderboard.each do |item| %>
   <li><%= link_to item.user.email, bracket_path(item) %> (Score: <%= item.score(Bracket.get_admin_bracket)
   %>)</li>
   <% end %>
 </ol>
-
-<h3>Top 10 Team Brackets</h3>
-
-<ol>
-  <% @top_ten_team_brackets.each do |item| %>
-  <li><%= item.name %> (Average Team Score: <%= item.average_team_score %>)</li>
-  <% end %>
-</ol>
-
 
 <% if is_admin? %>
 
