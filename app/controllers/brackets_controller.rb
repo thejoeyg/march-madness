@@ -22,6 +22,7 @@ class BracketsController < ApplicationController
   end
 
   def edit
+    redirect_to bracket_path(current_user.bracket.id) and return if !is_admin?
     no = ['id', 'created_at', 'updated_at']
     @column_names = Bracket.columns.map{|c| c.name}
     @column_names.delete('id')
