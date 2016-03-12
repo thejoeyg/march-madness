@@ -1,0 +1,43 @@
+!!!
+%html
+  %head
+    %title Basketball Championship
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    %script{:src => "https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.2/underscore-min.js"}
+    %script{:src => "https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.1/toastr.min.js"}
+    %link{:href => "https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.1/toastr.min.css", :rel => "stylesheet"}/
+    %link{:href => "http://fonts.googleapis.com/css?family=Quicksand", :rel => "stylesheet", :type => "text/css"}/
+    = csrf_meta_tags
+  %body
+    %header.navbar.navbar-default{:role => "navigation"}
+      .navbar-inner
+        .container
+          #logo.navbar-brand= link_to "#{Time.now.year} Basketball Tournament Bracket", root_path
+          %nav.collapse.navbar-collapse.navbar-ex1-collapse
+            - if user_signed_in?
+              %ul.nav.navbar-nav.navbar-right
+                %li= link_to 'Bracket', new_bracket_path
+                %li= link_to 'Account', edit_user_registration_path
+                %li= link_to 'Tournament Setup',  admin_index_path if is_admin?
+                %li= link_to 'Sign out', destroy_user_session_path, :method => :delete
+            - else
+              %ul.nav.navbar-nav.pull-right
+                %li= link_to 'Sign up', new_user_registration_path
+                %li= link_to 'Sign in', new_user_session_path
+    #main_content.container
+      - flash.each do |name, msg|
+        = content_tag(:div, msg, class: "alert alert-info")
+      #content.col-md-9.center-block
+        = yield
+    %nav.navbar.navbar-default.navbar-fixed-bottom
+      .container
+        %center
+          Made by Helen Lam. Find me on:
+          %a{:href => "https://twitter.com/helenflam"} Twitter
+          |
+          %a{:href => "https://www.linkedin.com/in/helenlam1/en"} LinkedIn
+          |
+          %a{:href => "https://github.com/helenlam100"} Github
+          |
+          %a{:href => "https://medium.com/@helenflam"} Blog
