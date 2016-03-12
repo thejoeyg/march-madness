@@ -80,6 +80,4 @@ test:
 #
 production:
   <<: *default
-  database: march-madness_production
-  username: march-madness
-  password: <%= ENV["MARCH-MADNESS_DATABASE_PASSWORD"] %>
+  url: <%= ENV['DATABASE_URL'] %>
