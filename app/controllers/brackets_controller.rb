@@ -90,7 +90,7 @@ end
     top_brackets = Bracket.non_admin.sort_by do |bracket|
       -bracket.score(actual_bracket)
     end
-    return top_brackets[0..9]
+    return top_brackets
   end
 
   def get_top_ten_team_brackets
