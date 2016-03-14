@@ -1,5 +1,8 @@
-<h1>Here are your bracket predictions: </h1>
-
+<% if is_admin? %>
+  <h1>Editting Admin Bracket: </h1>
+<% else %>
+  <h1>Here are your bracket predictions: </h1>
+<% end %>
 
 <div id="brackets"></div>
 
