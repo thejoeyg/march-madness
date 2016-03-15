@@ -155,12 +155,11 @@ $(function() {
     // $('#bracket_organization_id').val('0');
 
     $('#save').click(function() {
-      var numTeams = teams.length * 2;
-      var maxMatchId = numTeams * 2 - 2;
-      var is_admin = $('#is_admin')[0]
-
-
-      var picksById = {};
+      var numTeams = games.length * 2,
+        maxMatchId = numTeams * 2 - 2,
+        is_admin = $('#is_admin'),
+        picksById = {};
+        
       $('.score').each(function() {
         var $el = $(this);
         var resultId = $el.attr('data-resultid');

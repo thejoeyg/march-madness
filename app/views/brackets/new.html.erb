@@ -105,12 +105,11 @@
         //};
         $('#save').click(function() {
 
-          var is_admin = $('#is_admin')[0]
-          console.log(is_admin)
-          var numTeams = teams.length * 2;
-          var maxMatchId = numTeams * 2 - 2;
+          var is_admin = $('#is_admin'),
+            numTeams = games.length * 2,
+            maxMatchId = numTeams * 2 - 2,
+            picksById = {};
 
-          var picksById = {};
           $('.score').each(function() {
             var $el = $(this);
             var resultId = $el.attr('data-resultid');
